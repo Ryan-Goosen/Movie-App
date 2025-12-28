@@ -1,17 +1,16 @@
 .movie-card {
   position: relative;
-  border-radius: 8px;
+  border-radius: 25px;
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: #ffffff;
   transition: transform 0.2s;
   height: 100%;
-  width: 10000px;
+  min-width: 15%;
   display: flex;
   flex-direction: column;
-  max-width: 100%; /* Makes it 10% smaller than available width */
-  margin: 0 auto; /* Centers the card if it doesn't fill the container */
+  flex: 1 0 200px; /* Can grow, won't shrink below 200px */
+  max-width: 250px; /* Optional: maximum width it can grow to */
 }
-
 .movie-card:hover {
   transform: translateY(-5px);
 }
@@ -85,22 +84,28 @@
   cursor: pointer;
   margin-top: 0.5rem;
 }
-
 .movie-info {
   padding: 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  min-height: 120px; /* Ensures consistent info section height */
 }
 
+/* Update .movie-info h3 */
 .movie-info h3 {
   font-size: 1rem;
   margin: 0;
+  color: #000000;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limits title to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .movie-info p {
-  color: #999;
+  color: #000000;
   font-size: 0.9rem;
 }
 
