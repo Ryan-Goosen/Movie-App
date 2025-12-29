@@ -98,14 +98,24 @@ export const MovieProvider = ({ children }) => {
     return favorites.some(movie => movie.id === movieId);
   };
 
-  const value = {
+  const signOut = async () => {
+  const { error } = await supabase.auth.signOut();
+  if (!error) {
+    setUser(null);
+    setFavorites([]); // optional: clear local favorites on logout
+  }
+};
+
+const value = {
   user,
   favorites,
   addToFavorites,
   removeFromFavorites,
   isFavorite,
   loadingFavorites,
+  signOut, // ✅ add this
 };
+
 
 
   return (

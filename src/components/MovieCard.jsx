@@ -8,7 +8,6 @@ function MovieCard({movie}){
 
     function onFavClick(e) {
     e.preventDefault();
-
     if (!user) {
       alert('Please log in to save favorites');
       return;
