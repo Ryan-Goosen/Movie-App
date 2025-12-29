@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/Login.css';
+import { supabase } from '../services/supabaseClient';
 
 function LoginPage() {
   const [username, setUsername] = useState('');
@@ -7,23 +8,56 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+
+    setError('');
+    console.log("Supabase client test:", supabase);
+
+
     if (!username || !password) {
       setError('Please fill in both fields.');
       return;
     }
 
-    if (username === 'user' && password === 'password') {
-      setError('');
-      alert('Login Successful!');
-    } else {
-      setError('Invalid username or password.');
+    console.log("FIELDS FILLED IN");
+
+  const { data: loginData, error: loginError } = await supabase.auth.signInWithPassword({
+    email: username,
+    password: password,
+  });
+
+  console.log("loginData:", loginData);
+  console.log("loginError:", loginError);
+
+  if (!loginError) {
+    alert('Login Successful!');
+    return;
+  }
+
+  const { data: signupData, error: signupError } = await supabase.auth.signUp({
+    email: username,
+    password: password,
+  });
+
+  console.log("signupData:", signupData);
+  console.log("signupError:", signupError);
+
+
+    if (signupError) {
+      setError(signupError.message);
+      return;
     }
+
+    setError(
+      'Account created. Please check your email to confirm your account.'
+    );
   };
 
-  return (
+
+    return (
     <div className="login-page">
       <h1>Login</h1>
+
       <div className="form-group">
         <input
           type="text"
@@ -35,24 +69,26 @@ function LoginPage() {
 
       <div className="form-group">
         <div className="password-wrapper">
-        <input
-          type={showPassword ? 'text' : 'password'}
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button 
-          type="button" 
-          className="eye-button"
-          onClick={() => setShowPassword(!showPassword)}
-        >
-          {showPassword ? 'HIDE' : 'SHOW'}
-        </button>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button
+            type="button"
+            className="eye-button"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? 'HIDE' : 'SHOW'}
+          </button>
         </div>
       </div>
 
       {error && <p className="error">{error}</p>}
-      <button className="login-button" onClick={handleLogin}>Login</button>
+      <button className="login-button" onClick={handleLogin}>
+        Login
+      </button>
     </div>
   );
 }
