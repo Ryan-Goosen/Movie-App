@@ -52,6 +52,8 @@ function LoginPage() {
     setError(
       'Account created. Please check your email to confirm your account.'
     );
+    navigate('/');
+
   };
 
 

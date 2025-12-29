@@ -1,42 +1,116 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import { supabase } from "../services/supabaseClient";
 
-const MovieContext = createContext()
+const MovieContext = createContext();
 
-export const useMovieContext = () => useContext(MovieContext)
+export const useMovieContext = () => useContext(MovieContext);
 
-export const MovieProvider = ({children}) => {
-    const [favorites, setFavorites] = useState([])
-    
-    useEffect(() => {
-        const storedFavs = localStorage.getItem("favorites")
-        if (storedFavs) setFavorites(JSON.parse(storedFavs))
-    }, [] )
+export const MovieProvider = ({ children }) => {
+  const [favorites, setFavorites] = useState([]);
+  const [user, setUser] = useState(null);
+  const [loadingFavorites, setLoadingFavorites] = useState(true);
+  
 
-    useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favorites))
-    }, [favorites])
+  /* -----------------------------
+     Track auth state
+  ------------------------------ */
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setUser(data.session?.user ?? null);
+    });
 
-    const addToFavorites = (movie) => {
-        setFavorites(prev => [...prev, movie])
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
+
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  /* -----------------------------
+     Load favorites when user logs in
+  ------------------------------ */
+  useEffect(() => {
+  if (!user) {
+    setFavorites([]);
+    setLoadingFavorites(false);
+    return;
+  }
+
+  const loadFavorites = async () => {
+    setLoadingFavorites(true);
+
+    const { data, error } = await supabase
+      .from("favorites")
+      .select("movie_data")
+      .eq("user_id", user.id);
+
+    if (!error) {
+      setFavorites(data.map(row => row.movie_data));
     }
 
-    const removeFromFavorites = (movieId) => {
-        setFavorites(prev => prev.filter(movie => movie.id !== movieId))
-    }
+    setLoadingFavorites(false);
+  };
 
-    const isFavorite = (movieId) => {
-        return favorites.some(movie => movie.id === movieId)
-    }
+  loadFavorites();
+}, [user]);
 
-    const value = {
-        favorites,
-        addToFavorites,
-        removeFromFavorites,
-        isFavorite
-    }
 
-    return <MovieContext.Provider value={value}> 
-    
-        {children}
+  /* -----------------------------
+     Add favorite
+  ------------------------------ */
+  const addToFavorites = async (movie) => {
+    if (!user) return;
+
+    const { error } = await supabase.from("favorites").insert({
+      user_id: user.id,
+      movie_id: movie.id,
+      movie_data: movie,
+    });
+
+    if (!error) {
+      setFavorites(prev => [...prev, movie]);
+    }
+  };
+
+  /* -----------------------------
+     Remove favorite
+  ------------------------------ */
+  const removeFromFavorites = async (movieId) => {
+    if (!user) return;
+
+    const { error } = await supabase
+      .from("favorites")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("movie_id", movieId);
+
+    if (!error) {
+      setFavorites(prev => prev.filter(movie => movie.id !== movieId));
+    }
+  };
+
+  /* -----------------------------
+     Check favorite
+  ------------------------------ */
+  const isFavorite = (movieId) => {
+    return favorites.some(movie => movie.id === movieId);
+  };
+
+  const value = {
+  user,
+  favorites,
+  addToFavorites,
+  removeFromFavorites,
+  isFavorite,
+  loadingFavorites,
+};
+
+
+  return (
+    <MovieContext.Provider value={value}>
+      {children}
     </MovieContext.Provider>
-}
+  );
+};

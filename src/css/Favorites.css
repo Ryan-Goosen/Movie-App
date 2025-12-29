@@ -4,13 +4,19 @@
   box-sizing: border-box;
 }
 
-.favorites h2 {
-  margin-bottom: 2rem;
-  text-align: center;
-  font-size: 2.5rem;
+h2 {
+  margin: 0 auto 2rem auto;
+  display: block;           
+  width: fit-content;         
+  font-size: 3.5rem;
   color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }
+
 
 .favorites-empty {
   text-align: center;

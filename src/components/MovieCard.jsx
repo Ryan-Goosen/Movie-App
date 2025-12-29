@@ -3,17 +3,25 @@ import { useMovieContext } from '../contexts/MovieContext';
 
 
 function MovieCard({movie}){
-    const {isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
+    const {user, isFavorite, addToFavorites, removeFromFavorites} = useMovieContext()
     const favorite = isFavorite(movie.id)
 
-    function onFavClick(e){
-        e.preventDefault()
-        if (favorite) removeFromFavorites(movie.id)
-        else addToFavorites(movie)
+    function onFavClick(e) {
+    e.preventDefault();
+
+    if (!user) {
+      alert('Please log in to save favorites');
+      return;
     }
 
+    if (favorite) removeFromFavorites(movie.id);
+    else addToFavorites(movie);
+  }
+
+
+
     return (
-    <div className="movie-card">
+    <div className={`movie-card ${favorite ? "liked" : ""}`}>
         <div className="movie-poster">
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/>
             <div className="movie-overlay">

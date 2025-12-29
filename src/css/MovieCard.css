@@ -11,6 +11,20 @@
   flex: 1 0 200px; /* Can grow, won't shrink below 200px */
   max-width: 250px; /* Optional: maximum width it can grow to */
 }
+
+.movie-card.liked{
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  background-color: #c26baf;
+  transition: transform 0.2s;
+  height: 100%;
+  min-width: 15%;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 200px; /* Can grow, won't shrink below 200px */
+  max-width: 250px; /* Optional: maximum width it can grow to */
+}
 .movie-card:hover {
   transform: translateY(-5px);
 }
