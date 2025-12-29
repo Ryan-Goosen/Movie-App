@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import '../css/Login.css';
 import { supabase } from '../services/supabaseClient';
+import { useNavigate } from 'react-router-dom';
+
 
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate(); 
 
   const handleLogin = async () => {
 
@@ -31,6 +34,7 @@ function LoginPage() {
 
   if (!loginError) {
     alert('Login Successful!');
+    navigate('/');
     return;
   }
 
@@ -38,9 +42,6 @@ function LoginPage() {
     email: username,
     password: password,
   });
-
-  console.log("signupData:", signupData);
-  console.log("signupError:", signupError);
 
 
     if (signupError) {
