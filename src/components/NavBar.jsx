@@ -23,7 +23,7 @@ function NavBar() {
             Sign Out
           </button>
         ) : (
-          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/login" className="nav-link">Login/SignUp</Link>
         )}
         </div>
     </nav>
