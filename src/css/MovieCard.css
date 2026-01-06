@@ -8,6 +8,7 @@
   min-width: 15%;
   display: flex;
   flex-direction: column;
+  box-shadow: 10px 12px 25px rgba(255, 255, 255, 0.35);
   flex: 1 0 200px; /* Can grow, won't shrink below 200px */
   max-width: 250px; /* Optional: maximum width it can grow to */
 }
