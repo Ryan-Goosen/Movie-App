@@ -1,45 +1,55 @@
 .login-page {
   font-family: Arial, sans-serif;
-  margin: 50% auto;
-  margin-top: 15vh;
-  min-width: 40vw;
-  min-height: 40vh;
-  padding: 20px;
+  margin: 2rem auto;
+  width: 90%;
+  max-width: 450px;
+  min-height: auto;
+  padding: 1.5rem;
   border: 1px solid #000000;
   border-radius: 8px;
   background-image: linear-gradient(to top, #000000 0%, #5a5a5a 100%);
   text-align: center;
-  
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .login-page {
+    margin: 5rem auto;
+    padding: 2rem;
+  }
 }
 
 h1 {
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
 
 .form-group {
-  margin-bottom: 15px;
-  /* Added to ensure the container itself centers properly */
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 input {
-  /* Unified width logic */
   width: 100%;
-  max-width: 400px; /* Optional: keeps inputs from getting too wide on desktop */
-  padding: 10px;
+  padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 16px;
-  box-sizing: border-box; /* Crucial: padding won't increase width */
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
-/* This container now matches the width of the username input perfectly */
 .password-wrapper {
   position: relative;
   width: 100%;
-  max-width: 400px;
   display: flex;
   align-items: center;
 }
@@ -69,19 +79,19 @@ input {
   color: #032a93;
 }
 
-/* Main Login Button */
 .login-button:not(.eye-button) {
-  margin-top: 10%;
-  padding: 20px 50px; /* Slightly reduced padding for better proportions */
+  margin-top: 1.5rem;
+  padding: 0.875rem 2rem;
   border: none;
   border-radius: 4px;
   background-color: #032a93;
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
+  width: 100%;
 }
 
-login-button:not(.eye-button):hover {
+.login-button:not(.eye-button):hover {
   background-color: #ffffff;
   color: #000000;
 }
