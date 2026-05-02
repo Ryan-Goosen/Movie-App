@@ -1,99 +1,81 @@
-<a id="readme-top"></a>
+# Movies
 
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <h3 align="center">Movies</h3>
+> A user-friendly website to explore, discover, and search for movies with personalized favorites management.
 
-  <p align="center">
-    A user-friendly website designed to help you explore, discover, and search for a wide variety of movies, while also allowing you to save and manage a personalized list of your favorite films for easy access later.
-    <br />
-    <a href="https://codeberg.org/Ryan-Goosen/pomodoraClock"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-  </p>
-</div>
+---
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
+## About
 
+### What it does
+A website designed to help you explore, discover, and search for a wide variety of movies, while also allowing you to save and manage a personalized list of your favorite films for easy access later.
 
+### Why I built it
+I created this website as a showcase project to test and demonstrate my web development skills and creativity.
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+### Who it's for
+Movie enthusiasts who want an easy way to discover new films and keep track of their favorites.
 
-I created this website trying to see what I can do with web development. Basically testing my skills and creativity. It's current form is not that bad, I do have a few improvements I want to make to it in the future.
+---
 
+## Built With
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+| Category | Tool |
+| -------- | ---- |
+| **Language** | JavaScript |
+| **Framework** | React |
+| **Build Tool** | Vite |
+| **Libraries** | react-router-dom, @supabase/supabase-js, react-login-page |
+| **Styling** | CSS |
 
+---
 
+## Getting Started
 
-### Built With
+### Prerequisites
 
-[![JS][JS]][JS]
+- Node.js 18+
+- npm
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Installation
 
-<!-- USAGE EXAMPLES -->
+1. Clone the repo:
+```bash
+git clone https://codeberg.org/Ryan-Goosen/movies.git
+```
+
+2. Navigate into the project:
+```bash
+cd movie-app
+```
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+4. Run the project:
+```bash
+npm run dev
+```
+
+---
+
 ## Usage
 
-1. A way to keep track of all your favorite movies.
+Visit `http://localhost:5173` after running the dev server. Use the interface to:
+- Search for movies
+- Discover new films
+- Save favorites to your personal list
 
-<!-- CONTRIBUTING -->
-## Contributing
+---
 
-Not needed.
-
-### Top contributors:
-ME :)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
 ## License
 
-Distributed under the Unlicense License. See [`LICENSE`](LICENSE) for more information.
+Distributed under the GPL-3.0 License. See `LICENSE` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+---
 
-
-<!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [rawpixel.com Cool Dog Image](https://www.rawpixel.com/image/12053935/image-background-dog-face)
-* [othneildrew Best-README-Template](https://github.com/othneildrew/Best-README-Template)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: src/pomodoraClock/assets/images/final.png
-[JS]: https://img.shields.io/badge/logo-javascript-blue?logo=javascript&logoColor=f5f5f5
+- [rawpixel.com Cool Dog Image](https://www.rawpixel.com/image/12053935/image-background-dog-face)
+- [othneildrew Best-README-Template](https://github.com/othneildrew/Best-README-Template)
